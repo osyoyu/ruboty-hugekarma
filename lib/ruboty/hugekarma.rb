@@ -7,10 +7,25 @@ module Ruboty
     class HugeKarma < Base
       BRAIN_KEY = 'hugekarma'
 
-      on /(?<name>.+)\+\+$/, name: 'increment', description: "Increment <name>'s karma by 1"
-      on /(?<name>.+) \+(?<value>[\d万億兆京]+)$/, name: 'super_increment', description: "Increment <name>'s score by specified value"
-      on /karma list$/, name: 'list_karma', description: "Show karma ranking"
-      # on /karma set (?<name>.+) \+[\d万億兆京]+$/, name: 'set_karma', description: "Set <name>'s karma to specified value"
+      on(
+        /(?<name>.+)\+\+$/,
+        name: 'increment',
+        description: "Increment <name>'s karma by 1",
+        all: true
+      )
+
+      on(
+        /(?<name>.+) \+(?<value>[\d万億兆京]+)$/,
+        name: 'super_increment',
+        description: "Increment <name>'s score by specified value",
+        all: true
+      )
+
+      on(
+        /karma list$/,
+        name: 'list_karma',
+        description: "Show karma ranking"
+      )
 
       def increment(message)
         brain = message.robot.brain
